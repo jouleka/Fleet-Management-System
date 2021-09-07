@@ -1,0 +1,47 @@
+<h3>Update Vehicle Configurations</h3>
+<button class="return" (click)="goToServiceList()" mat-flat-button color="primary" type="submit">
+  Return To List
+</button>
+<form (ngSubmit)="onSubmit()">
+  <div class="form">
+    <mat-form-field>
+      <mat-label>Vehicle Name</mat-label>
+      <input placeholder="Name" matInput required type="text" id="vehicleName" [(ngModel)]="vehicleConfig.vehicleName"
+        name="vehicleName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Companies</mat-label>
+      <mat-select [compareWith]="compareFn" [(ngModel)]="vehicleConfig.company" name="companyName">
+        <mat-option *ngFor="let company of companyList" [value]="company">
+          {{ company.companyName }}
+        </mat-option>
+      </mat-select>
+      <!-- {{vehicleConfig.company.companyName}} -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vehicle Services</mat-label>
+      <mat-select [compareWith]="compareFn" [(ngModel)]="vehicleConfig.vehicleServices" name="serviceName" multiple>
+        <mat-option *ngFor="let service of services" [value]="service">
+          {{ service.serviceName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Consumption In Liters</mat-label>
+      <input matInput required type="number" min="0" (input)="checkValue($event)" id="consumptionInLiters"
+        [(ngModel)]="vehicleConfig.consuptionInLiters" name="consumptionInLiters" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vehicle Engine</mat-label>
+      <input placeholder="engine number" matInput required type="number" min="0" (input)="checkValue($event)"
+        class="form-control" id="vehicleEngine" [(ngModel)]="vehicleConfig.vehicleEngine" name="vehicleEngine" />
+    </mat-form-field>
+    <button (ngSubmit)="onSubmit()" mat-flat-button color="success" type="submit">
+      Submit
+    </button>
+  </div>
+</form>

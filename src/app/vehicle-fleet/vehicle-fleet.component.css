@@ -1,0 +1,24 @@
+table {
+  width: 90%;
+  margin: auto;
+}
+
+.position {
+  margin-left: 90.7%;
+}
+
+.actions {
+  padding-left: 1%;
+}
+
+.red-icon {
+  color: red;
+}
+
+.brown-icon {
+  color: rgb(189, 137, 25);
+}
+
+.green-icon {
+  color: rgb(21, 156, 21);
+}

@@ -1,0 +1,72 @@
+<h3>Add a Service</h3>
+<button
+  class="return"
+  (click)="goToServiceList()"
+  mat-flat-button
+  color="primary"
+  type="submit"
+>
+  Return To List
+</button>
+<form (ngSubmit)="onSubmit()">
+  <div class="form">
+    <mat-form-field>
+      <mat-label>Service Name</mat-label>
+      <input
+      placeholder="Name"
+        matInput
+        required
+        type="text"
+        id="serviceName"
+        [(ngModel)]="serviceConfig.serviceName"
+        name="serviceName"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Time Frequency</mat-label>
+      <input
+      placeholder="number"
+        matInput
+        required
+        type="number"
+        min="0"
+        (input)="checkValue($event)"
+        class="form-control"
+        id="timeFrequency"
+        [(ngModel)]="serviceConfig.timeFrequency"
+        name="timeFrequency"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Kilometer Frequency</mat-label>
+      <input
+      placeholder="number"
+        matInput
+        required
+        type="number"
+        min="0"
+        (input)="checkValue($event)"
+        class="form-control"
+        id="kilometerFrequency"
+        [(ngModel)]="serviceConfig.kilometerFrequency"
+        name="kilometerFrequency"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Description </mat-label>
+      <input
+      placeholder="text"
+        matInput
+        type="text"
+        class="form-control"
+        id="description"
+        [(ngModel)]="serviceConfig.description"
+        name="description"
+      />
+    </mat-form-field>
+    <button mat-flat-button color="success" type="submit">Submit</button>
+  </div>
+</form>

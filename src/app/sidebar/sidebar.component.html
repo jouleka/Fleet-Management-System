@@ -1,0 +1,44 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+
+      <mat-list-item [routerLink]="'api/homePage'">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span *ngIf="opened">Home</span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon class="chevron-button sidenav-button" [ngClass]="{'rotated': opened}" (click)="opened = !opened">chevron_right</mat-icon>
+        <span *ngIf="opened">Services</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'api/company'">
+        <mat-icon mat-list-icon>business</mat-icon>
+        <span *ngIf="opened">Company Configurations</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'api/vehicle-configuration'">
+        <mat-icon mat-list-icon>emoji_transportation</mat-icon>
+        <span *ngIf="opened">Vehicle Configurations</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'api/vehicle-services'">
+        <mat-icon mat-list-icon>home_repair_service</mat-icon>
+        <span *ngIf="opened">Vehicle Services</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'api/vehicle-fleet'">
+        <mat-icon mat-list-icon>travel_explore</mat-icon>
+        <span *ngIf="opened">Vehicle Fleet</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="content">
+    <mat-toolbar>
+      <h3>Fleet Management System</h3>
+    </mat-toolbar>
+  </div>
+
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

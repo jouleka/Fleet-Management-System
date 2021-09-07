@@ -1,0 +1,34 @@
+<h3>Add Vehicle Fleet</h3>
+<button class="return" (click)="goToFleet()" mat-flat-button color="primary" type="submit">
+  Return To List
+</button>
+<form (ngSubmit)="onSubmit()">
+  <div class="form">
+    <mat-form-field>
+      <mat-label>Fleet Name</mat-label>
+      <input placeholder="Name" matInput required type="text" id="name" [(ngModel)]="fleetConfig.name" name="name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Companies</mat-label>
+      <mat-select (selectionChange)="filteredVehicles($event)" [(ngModel)]="fleetConfig.company" name="companyName">
+        <mat-option *ngFor="let company of companyList" [value]="company">
+          {{ company.companyName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vehicles</mat-label>
+      <mat-select [(ngModel)]="fleetConfig.vehicles" name="vehicleName" multiple>
+        <mat-option *ngFor="let vehicle of vsList" [value]="vehicle">
+          {{ vehicle.vehicleName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button (ngSubmit)="onSubmit()" mat-flat-button color="success" type="submit">
+      Submit
+    </button>
+  </div>
+</form>
