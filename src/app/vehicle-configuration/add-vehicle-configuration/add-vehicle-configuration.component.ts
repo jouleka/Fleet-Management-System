@@ -2,20 +2,34 @@ import { CompanyConfigurationServiceService } from 'src/app/services/company-con
 import { VehicleConfigurationServiceService } from './../../services/vehicle-configuration-service.service';
 import { VehicleConfiguration } from './../../models/vehicle-configuration.model';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup, FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CompanyConfiguration } from 'src/app/models/company-configuration.model';
 import { VehicleService } from 'src/app/models/vehicle-service.model';
 import { VehicleServiceServicesService } from 'src/app/services/vehicle-service-services.service';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-add-vehicle-configuration',
-  templateUrl: './add-vehicle-configuration.component.html',
-  styleUrls: ['./add-vehicle-configuration.component.css'],
+    selector: 'app-add-vehicle-configuration',
+    templateUrl: './add-vehicle-configuration.component.html',
+    styleUrls: ['./add-vehicle-configuration.component.css'],
+    imports: [
+        MatButton,
+        FormsModule,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatSelect,
+        NgFor,
+        MatOption,
+    ],
 })
 export class AddVehicleConfigurationComponent implements OnInit {
-  myForm!: FormGroup;
+  myForm!: UntypedFormGroup;
   vehicleConfig: VehicleConfiguration = new VehicleConfiguration();
   services!: VehicleService[];
   companyList!: CompanyConfiguration[];

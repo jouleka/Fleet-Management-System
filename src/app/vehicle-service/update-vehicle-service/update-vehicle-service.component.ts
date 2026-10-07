@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup, FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from 'src/app/models/vehicle-service.model';
 import { VehicleServiceServicesService } from 'src/app/services/vehicle-service-services.service';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-update-vehicle-service',
-  templateUrl: './update-vehicle-service.component.html',
-  styleUrls: ['./update-vehicle-service.component.css']
+    selector: 'app-update-vehicle-service',
+    templateUrl: './update-vehicle-service.component.html',
+    styleUrls: ['./update-vehicle-service.component.css'],
+    imports: [MatButton, FormsModule, MatFormField, MatLabel, MatInput]
 })
 export class UpdateVehicleServiceComponent implements OnInit {
 
   id!: string;
-  myForm!: FormGroup;
+  myForm!: UntypedFormGroup;
   serviceConfig: VehicleService = new VehicleService();
 
   constructor(

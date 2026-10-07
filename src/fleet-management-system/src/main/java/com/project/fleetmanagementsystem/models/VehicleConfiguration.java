@@ -1,5 +1,7 @@
 package com.project.fleetmanagementsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -13,7 +15,7 @@ import java.util.List;
 @Document(collection = "VehicleConfiguration")
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(onConstructor_ = @JsonCreator)
 @AllArgsConstructor
 public class VehicleConfiguration {
 

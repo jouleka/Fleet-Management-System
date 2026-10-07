@@ -1,4 +1,3 @@
-import { MatTableFilter } from 'mat-table-filter';
 import { MatPaginator } from '@angular/material/paginator';
 import { VehicleFleetServiceService } from './../services/vehicle-fleet-service.service';
 import { VehicleFLeet } from './../models/vehicle-fleet.model';
@@ -7,14 +6,36 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { AbstractControl, FormBuilder } from '@angular/forms';
-import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { AbstractControl, UntypedFormBuilder } from '@angular/forms';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-vehicle-fleet',
-  templateUrl: './vehicle-fleet.component.html',
-  styleUrls: ['./vehicle-fleet.component.css'],
+    selector: 'app-vehicle-fleet',
+    templateUrl: './vehicle-fleet.component.html',
+    styleUrls: ['./vehicle-fleet.component.css'],
+    imports: [
+        MatFormField,
+        MatInput,
+        MatButton,
+        MatIcon,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+    ],
 })
 export class VehicleFleetComponent implements OnInit {
   displayedColumns: string[] = ['name', 'company', 'update', 'delete'];
@@ -28,7 +49,7 @@ export class VehicleFleetComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
-    public formBuilder: FormBuilder
+    public formBuilder: UntypedFormBuilder
   ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -1,16 +1,18 @@
 package com.project.fleetmanagementsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-;import javax.validation.constraints.Email;
+import jakarta.validation.constraints.Email;
 
 @Document(collection = "CompanyConfiguration")
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(onConstructor_ = @JsonCreator)
 @AllArgsConstructor
 public class CompanyConfiguration {
     @Id

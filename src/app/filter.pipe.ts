@@ -1,22 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({
-  name: 'filter'
-})
+@Pipe({ name: 'filter' })
 export class FilterPipe implements PipeTransform {
-
-  transform(value: any, fleetTable: string): any {
-    if(fleetTable==="") {
-      return value;
-    }
-    const fleetArray:any[]=[];
-    for(let i = 0; i<= value.length;i++) {
-      let fleetName: string = value[i].name;
-      if(fleetName.startsWith(fleetTable)) {
-        fleetArray.push(value[i])
-      }
-    }
-    return fleetArray;
+  transform<T extends { name?: string }>(items: T[] | null | undefined, term: string | null | undefined): T[] {
+    if (!items) return [];
+    if (!term) return items;
+    return items.filter(item => String(item.name ?? '').startsWith(term));
   }
-
 }

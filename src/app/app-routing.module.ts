@@ -1,49 +1,36 @@
-import { HomeConfigurationComponent } from './home-configuration/home-configuration.component';
-import { UpdateVehicleServiceComponent } from './vehicle-service/update-vehicle-service/update-vehicle-service.component';
-import { AddVehicleServiceComponent } from './vehicle-service/add-vehicle-service/add-vehicle-service.component';
-import { VehicleServiceComponent } from './vehicle-service/vehicle-service.component';
-import { UpdateVehicleFleetComponent } from './vehicle-fleet/update-vehicle-fleet/update-vehicle-fleet.component';
-import { AddVehicleFleetComponent } from './vehicle-fleet/add-vehicle-fleet/add-vehicle-fleet.component';
-import { VehicleFleetComponent } from './vehicle-fleet/vehicle-fleet.component';
-import { UpdateVehicleConfigurationComponent } from './vehicle-configuration/update-vehicle-configuration/update-vehicle-configuration.component';
-import { AddVehicleConfigurationComponent } from './vehicle-configuration/add-vehicle-configuration/add-vehicle-configuration.component';
-import { VehicleConfigurationComponent } from './vehicle-configuration/vehicle-configuration.component';
-import { UpdateCompanyConfigurationComponent } from './company-configuration/update-company-configuration/update-company-configuration.component';
-import { AddCompanyConfigurationComponent } from './company-configuration/add-company-configuration/add-company-configuration.component';
-import { CompanyConfigurationComponent } from './company-configuration/company-configuration.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'api/homePage', pathMatch: 'full' },
-  { path: 'api/company', component: CompanyConfigurationComponent },
-  { path: 'api/company/add', component: AddCompanyConfigurationComponent },
+  { path: 'api/company', loadComponent: () => import('./company-configuration/company-configuration.component').then(module => module.CompanyConfigurationComponent) },
+  { path: 'api/company/add', loadComponent: () => import('./company-configuration/add-company-configuration/add-company-configuration.component').then(module => module.AddCompanyConfigurationComponent) },
   {
     path: 'api/company/update/:id',
-    component: UpdateCompanyConfigurationComponent,
+    loadComponent: () => import('./company-configuration/update-company-configuration/update-company-configuration.component').then(module => module.UpdateCompanyConfigurationComponent),
   },
   {
     path: 'api/vehicle-configuration',
-    component: VehicleConfigurationComponent,
+    loadComponent: () => import('./vehicle-configuration/vehicle-configuration.component').then(module => module.VehicleConfigurationComponent),
   },
   {
     path: 'api/vehicle-configuration/add',
-    component: AddVehicleConfigurationComponent,
+    loadComponent: () => import('./vehicle-configuration/add-vehicle-configuration/add-vehicle-configuration.component').then(module => module.AddVehicleConfigurationComponent),
   },
   {
     path: 'api/vehicle-configuration/update/:id',
-    component: UpdateVehicleConfigurationComponent,
+    loadComponent: () => import('./vehicle-configuration/update-vehicle-configuration/update-vehicle-configuration.component').then(module => module.UpdateVehicleConfigurationComponent),
   },
-  { path: 'api/vehicle-fleet', component: VehicleFleetComponent },
-  { path: 'api/vehicle-fleet/add', component: AddVehicleFleetComponent },
-  { path: 'api/vehicle-fleet/update/:id', component: UpdateVehicleFleetComponent },
-  { path: 'api/vehicle-services', component: VehicleServiceComponent },
-  { path: 'api/vehicle-services/add', component: AddVehicleServiceComponent },
+  { path: 'api/vehicle-fleet', loadComponent: () => import('./vehicle-fleet/vehicle-fleet.component').then(module => module.VehicleFleetComponent) },
+  { path: 'api/vehicle-fleet/add', loadComponent: () => import('./vehicle-fleet/add-vehicle-fleet/add-vehicle-fleet.component').then(module => module.AddVehicleFleetComponent) },
+  { path: 'api/vehicle-fleet/update/:id', loadComponent: () => import('./vehicle-fleet/update-vehicle-fleet/update-vehicle-fleet.component').then(module => module.UpdateVehicleFleetComponent) },
+  { path: 'api/vehicle-services', loadComponent: () => import('./vehicle-service/vehicle-service.component').then(module => module.VehicleServiceComponent) },
+  { path: 'api/vehicle-services/add', loadComponent: () => import('./vehicle-service/add-vehicle-service/add-vehicle-service.component').then(module => module.AddVehicleServiceComponent) },
   {
     path: 'api/vehicle-services/update/:id',
-    component: UpdateVehicleServiceComponent,
+    loadComponent: () => import('./vehicle-service/update-vehicle-service/update-vehicle-service.component').then(module => module.UpdateVehicleServiceComponent),
   },
-  { path: 'api/homePage', component: HomeConfigurationComponent },
+  { path: 'api/homePage', loadComponent: () => import('./home-configuration/home-configuration.component').then(module => module.HomeConfigurationComponent) },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup, FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyConfiguration } from 'src/app/models/company-configuration.model';
@@ -8,15 +8,20 @@ import { VehicleFLeet } from 'src/app/models/vehicle-fleet.model';
 import { CompanyConfigurationServiceService } from 'src/app/services/company-configuration-service.service';
 import { VehicleConfigurationServiceService } from 'src/app/services/vehicle-configuration-service.service';
 import { VehicleFleetServiceService } from 'src/app/services/vehicle-fleet-service.service';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-update-vehicle-fleet',
-  templateUrl: './update-vehicle-fleet.component.html',
-  styleUrls: ['./update-vehicle-fleet.component.css']
+    selector: 'app-update-vehicle-fleet',
+    templateUrl: './update-vehicle-fleet.component.html',
+    styleUrls: ['./update-vehicle-fleet.component.css'],
+    imports: [MatButton, FormsModule, MatFormField, MatLabel, MatInput, MatSelect, NgFor, MatOption]
 })
 export class UpdateVehicleFleetComponent implements OnInit {
   id!: string;
-  myForm!: FormGroup;
+  myForm!: UntypedFormGroup;
   fleetConfig: VehicleFLeet = new VehicleFLeet();
   fleetService!: VehicleFLeet[];
   companyList!: CompanyConfiguration[];

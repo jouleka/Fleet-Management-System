@@ -1,21 +1,23 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyConfiguration } from 'src/app/models/company-configuration.model';
 import { CompanyConfigurationServiceService } from 'src/app/services/company-configuration-service.service';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-update-company-configuration',
-  templateUrl: './update-company-configuration.component.html',
-  styleUrls: ['./update-company-configuration.component.css']
+    selector: 'app-update-company-configuration',
+    templateUrl: './update-company-configuration.component.html',
+    styleUrls: ['./update-company-configuration.component.css'],
+    imports: [MatButton, FormsModule, MatFormField, MatLabel, MatInput]
 })
 export class UpdateCompanyConfigurationComponent implements OnInit {
 
   id!: string;
   companyConfig: CompanyConfiguration = new CompanyConfiguration();
-  componayForm!: FormGroup;
+  componayForm!: UntypedFormGroup;
   url: any;
 
   constructor(
@@ -23,7 +25,7 @@ export class UpdateCompanyConfigurationComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private activateRouter: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {

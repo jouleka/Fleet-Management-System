@@ -2,19 +2,23 @@ import { CompanyConfiguration } from './../../models/company-configuration.model
 import { CompanyConfigurationServiceService } from './../../services/company-configuration-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { parseHostBindings } from '@angular/compiler';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-add-company-configuration',
-  templateUrl: './add-company-configuration.component.html',
-  styleUrls: ['./add-company-configuration.component.css'],
+    selector: 'app-add-company-configuration',
+    templateUrl: './add-company-configuration.component.html',
+    styleUrls: ['./add-company-configuration.component.css'],
+    imports: [
+        MatButton,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatInput,
+    ],
 })
 export class AddCompanyConfigurationComponent implements OnInit {
 
@@ -25,14 +29,14 @@ export class AddCompanyConfigurationComponent implements OnInit {
     email: ['', Validators.pattern(this.emailPattern)],
     address: ['', Validators.pattern(this.addressPattern)],
   });
-  componayForm!: FormGroup;
+  componayForm!: UntypedFormGroup;
   url: any;
 
   constructor(
     private companyConfigurationService: CompanyConfigurationServiceService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -80,7 +84,7 @@ export class AddCompanyConfigurationComponent implements OnInit {
   }
 
   initFormCompanyForm() {
-    this.componayForm = new FormGroup({
+    this.componayForm = new UntypedFormGroup({
       companyName: this.fb.control(''),
       companyLogo: this.fb.control(''),
       address: this.fb.control(''),
