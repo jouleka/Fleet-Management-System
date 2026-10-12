@@ -5,6 +5,7 @@ import com.project.fleetmanagementsystem.repos.VehicleFleetRepository;
 import com.project.fleetmanagementsystem.services.VehicleFleetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,9 +42,12 @@ public class VehicleFleetController {
         return vehicleFleetService.updateVehicleFleet(vehicleFleet);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteVehicleFleet(@PathVariable String id) {
+    @DeleteMapping(value = "/delete/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> deleteVehicleFleet(@PathVariable String id) {
         vehicleFleetRepository.deleteById(id);
-        return "The Vehicle Fleet with Id of" + id + " has been deleted";
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .header("X-Content-Type-Options", "nosniff")
+                .body("The Vehicle Fleet with Id of" + id + " has been deleted");
     }
 }

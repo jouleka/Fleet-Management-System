@@ -29,7 +29,7 @@ export class VehicleFleetServiceService {
     return this.http.put(`${baseUrl}/update/${id}`, fleet);
   }
 
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/delete/${id}`);
+  delete(id: any): Observable<string> {
+    return this.http.delete(`${baseUrl}/delete/${id}`, { responseType: 'text' });
   }
 }
